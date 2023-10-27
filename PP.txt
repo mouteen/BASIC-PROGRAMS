@@ -1,0 +1,1119 @@
+1. Check Two String which are reverse of each other or not.
+
+import java.util.*;
+public class Stringreverse{
+public static void checkString(String X, String Y)
+{
+	int L = -1;
+	int R = -1;
+	for (int i = 0; i < X.length(); ++i) {
+		if (X.charAt(i) != Y.charAt(i)) {
+			L = i;
+			break;
+		}
+	}
+	for (int i = X.length() - 1; i > 0; --i) {
+		if (X.charAt(i) != Y.charAt(i)) {
+			R = i;
+			break;
+		}
+	}
+	X = X.substring(0, L) + 
+	reverse(X.substring(L, R + 1)) + 
+	X.substring(R + 1);
+	if (X.equals(Y)) {
+		System.out.print("Yes");
+	}
+	else {
+		System.out.print("No");
+	}
+}
+static String reverse(String input) {
+	char[] a = input.toCharArray();
+	int l, r = a.length - 1;
+	for (l = 0; l < r; l++, r--) {
+		char temp = a[l];
+		a[l] = a[r];
+		a[r] = temp;
+	}
+	return String.valueOf(a);
+}
+public static void main(String[] args)
+{
+	String X = "adcbef", Y = "abcdef";
+	checkString(X, Y);
+}
+}
+
+
+2. Find the Smallest Sum of consecutive Number from given array.
+import java.util.Arrays;
+public class Main {
+public static int smallestSumSubarr(int[] arr, int n) {
+	int[] prefixSum = new int[n + 1];
+	prefixSum[0] = 0;
+	for (int i = 1; i <= n; i++) {
+		prefixSum[i] = prefixSum[i - 1] + arr[i - 1];
+	}
+	int min_sum = Integer.MAX_VALUE;
+	for (int i = 0; i < n; i++) {
+		for (int j = i + 1; j <= n; j++) {
+			min_sum = Math.min(min_sum, prefixSum[j] - prefixSum[i]);
+			}
+		}		
+	return min_sum;
+	}
+public static void main(String[] args) {
+int[] arr = { 3, -4, 2, -3, -1, 7, -5 };
+int n = arr.length;
+System.out.println("Smallest sum: " + smallestSumSubarr(arr, n));
+}
+}
+
+3. Find the Power without using math.pow function.
+import java.io.*;
+public class JavaApplication1 {
+	public static void main(String[] args)
+	{
+		int base = 2, power = 2;
+		int result = 1;
+		for (power = 2; power != 0; power--) {
+			result = result * base;
+		}
+		System.out.println("Result = " + result);
+	}
+}
+
+4. Find the negative Power without using math.pow function.
+import java.util.*;
+public class Main
+{
+    public static void main(String[] args) {
+    int base,exponent,result=1;
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Please give the base number");
+    base= sc.nextInt();
+    System.out.println("Please give the exponent number");
+    exponent= sc.nextInt();
+    System.out.println(base+" to the power "+exponent);
+    while (exponent != 0) {
+        result = base * result;
+        --exponent;
+    }
+    System.out.println(result);
+    }
+}
+
+5. Find the unique Character in the String.
+import java.util.*;
+public class Solution{
+public static void main(String[] args)
+{
+	String str = "Programming";
+	for (int i = 0; i < str.length(); i++)
+	{
+		int n = 0;
+		for (int j = 0; j < str.length(); j++)
+		{
+			if (str.charAt(i) == str.charAt(j) && i != j) 
+			{
+				n = 1;
+				break;
+			}
+		}
+		if (n== 0)
+			System.out.print(str.charAt(i));
+	}
+}
+}
+
+6. Print the repeated characters in a String.
+public class Repeatedchar{  
+     public static void main(String[] args) {  
+        String str1 = "Programming";  
+        int count;  
+        char str[] = str1.toCharArray();  
+        System.out.println("Repeated characters in a given string: ");  
+        for(int i = 0; i <str.length; i++) {  
+            count = 1;  
+            for(int j = i+1; j <str.length; j++) {  
+                if(str[i] == str[j] && str[i] != ' ') {  
+                    count++;  
+                    str[j] = '0';  
+                }  
+            }  
+            if(count > 1 && str[i] != '0')  
+                System.out.println(str[i]);  
+        }  
+    }  
+}  
+
+7. How many times a particular character is repeated in a string.
+public class NoOfOccurrenceOfCharacters {
+	static final int MAX_CHAR = 256;
+	static void getOccurringChar(String str) {
+		int count[] = new int[MAX_CHAR];
+		int len = str.length();
+		for (int i = 0; i < len; i++)
+			count[str.charAt(i)]++;
+		char ch[] = new char[str.length()];
+		for (int i = 0; i < len; i++) {
+			ch[i] = str.charAt(i);
+			int find = 0;
+			for (int j = 0; j <= i; j++) {
+				if (str.charAt(i) == ch[j])
+					find++;
+			}
+
+			if (find == 1)
+				System.out.println(
+					"Number of Occurrence of " + str.charAt(i) + " is:" + count[str.charAt(i)]);  }  }
+	public static void main(String[] args)
+	{
+		String str = "programming";
+		getOccurringChar(str);
+	}
+}
+
+
+8. Count the number of vowels and constants in a string.
+public class Solution{    
+    public static void main(String[] args) {    
+        int vowel = 0, consonant = 0;    
+        String str = "Have a good day.";
+        str = str.toLowerCase();    
+        for(int i = 0; i < str.length(); i++) {     
+            if(str.charAt(i) == 'a' || str.charAt(i) == 'e' || str.charAt(i) == 'i' || str.charAt(i) == 'o' || str.charAt(i) == 'u') {    
+                vowel++;    
+            }    
+           else if(str.charAt(i) >= 'a' && str.charAt(i)<='z') {   
+                consonant++;    
+            }
+        }    
+        System.out.println("Number of vowels: \n" + vowel);    
+        System.out.println("Number of consonants: \n" + consonant);    
+    }    
+} 
+
+9. Convert a String into integer.
+public class StringToInteger{  
+    public static void main(String args[]){  
+        String str="100";  
+        int i=Integer.parseInt(str);  
+        System.out.println(i);  
+       }
+}
+
+10. Write a program to find the difference between equals and ==.
+public class Solution {
+	public static void main(String[] args)
+	{
+		Object o1 = new Object();
+		Object o2 = new Object();
+		Object o3 = o1;
+
+		String str = new String("HELLO");
+		String str1 = new String("HELLO");
+
+		System.out.println(o1 == o3);
+		System.out.println(str == str1);
+		System.out.println(o1.equals(o2));
+		System.out.println(str.equals(str1));
+	}
+}
+
+
+11. Remove characters from the first String which are present in the second string.
+import java.util.*;
+public class Solution{
+  public static String solve(String str1, String str2) {
+    StringBuffer ans = new StringBuffer();
+    for (int i = 0; i < str1.length(); i++) {
+      int flag = 0;
+      for (int j = 0; j < str2.length(); j++) {
+        if (str1.charAt(i) == str2.charAt(j)) {
+          flag = 1;
+        }
+      }
+
+      if (flag != 1)
+        ans.append(str1.charAt(i));
+    }
+    return ans.toString();
+  }
+
+  public static void main(String args[]) {
+    String str1 = "abcdefghi";
+    String str2 = "cdgh";
+
+    System.out.println("Final string:");
+    System.out.println(solve(str1, str2));
+  }
+}
+
+12. Print all permutation of a String.
+public class Permutation {
+	public static void main(String[] args)
+	{
+		String str = "ABC";
+		int n = str.length();
+		Permutation permutation = new Permutation();
+		permutation.permute(str, 0, n - 1);
+	}
+	private void permute(String str, int l, int r)	{
+		if (l == r)
+			System.out.println(str);
+		else {
+			for (int i = l; i <= r; i++) {
+				str = swap(str, l, i);
+				permute(str, l + 1, r);
+				str = swap(str, l, i);
+			}
+		}
+	}
+	public String swap(String a, int i, int j) {
+		char temp;
+		char[] charArray = a.toCharArray();
+		temp = charArray[i];
+		charArray[i] = charArray[j];
+		charArray[j] = temp;
+		return String.valueOf(charArray);
+	}
+}
+
+13. Check whether the string is Anagram or not.
+import java.io.*;
+import java.util.Arrays;
+import java.util.Collections;
+class Solution{
+	static boolean areAnagram(char[] str1, char[] str2)
+	{
+		int n1 = str1.length;
+		int n2 = str2.length;
+		if (n1 != n2)
+			return false;
+		Arrays.sort(str1);
+		Arrays.sort(str2);
+		for (int i = 0; i < n1; i++)
+			if (str1[i] != str2[i])
+				return false;
+		return true;
+	}
+	public static void main(String args[]) {
+		char str1[] = { 'g', 'r', 'a', 'm' };
+		char str2[] = { 'a', 'r', 'm' };
+		if (areAnagram(str1, str2))
+			System.out.println("The two strings are" + " anagram of each other");
+		else
+			System.out.println("The two strings are not" + " anagram of each other");
+	}
+}
+
+14. WAP to read name (program) and print letters in ascending order(agmoprr).
+import java.io.*;
+import java.util.Arrays;
+public class Solution{
+public static void main(String[] args) throws Exception {
+	String str = "program";	
+	char arr[] = str.toCharArray();
+	char temp;
+	int i = 0;
+	while (i < arr.length) {
+		int j = i + 1;
+		while (j < arr.length) {
+			if (arr[j] < arr[i]) {				
+				temp = arr[i];
+				arr[i] = arr[j];
+				arr[j] = temp; }
+			j += 1;  }
+			i += 1;
+		}
+		System.out.println(arr);
+	}
+}
+
+15. WAP to read a number (28156437) and it should print digits order wise(12345678).
+import java.util.Scanner;
+public class Solution {
+    public void sortDigits() {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Enter a number having 3 or more digits: ");
+        int OrgNum = in.nextInt();
+        for (int i = 0; i <= 9; i++) {
+            int num = OrgNum;
+            int c = 0;
+            while (num != 0) {
+                if (num % 10 == i)
+                    c++;
+                num /= 10;
+            }
+            for (int j = 1; j <= c; j++) {
+                System.out.print(i + ", ");
+            }
+        }
+        
+        System.out.println();
+    }
+}
+
+16. Take 10 integers from keyboard using loop and print their average value on the screen.
+import java.util.*;
+public class Main{
+    public static void main(String[] args){
+        Scanner sc = new Scanner(System.in);
+        System.out.println("Total count of number to find the average of: ");
+        int n = sc.nextInt();
+        int sum = 0;
+        System.out.println("Enter the numbers: ");
+        for(int i=0;i<n;i++){
+            sum += sc.nextInt();
+        }
+        double average = sum/(double)n; 
+        System.out.println("Average of n given numbers is "+average);
+    }    
+}
+
+17. Write a program that reads a set of integers, and then prints the sum of the even and odd integers.
+import java.util.Scanner;
+public class Solution {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int number;
+        char choice;
+        int even = 0;
+        int odd = 0;
+        do
+        {
+            System.out.print("Enter any number ");
+            number = sc.nextInt();
+ 
+            if( number % 2 == 0)
+            {
+                even += number;
+            }
+            else
+             {
+                odd += number;
+            }
+            System.out.print("Do you want to continue y/n? ");
+            choice = sc.next().charAt(0);
+ 
+        }while(choice=='y' || choice == 'Y');
+ 
+        System.out.println("Sum of even numbers: " + even);
+        System.out.println("Sum of odd numbers: " + odd);
+    }  
+}
+
+18. Determine and print the number of times the character ‘a’ appears in the input entered by the user.
+import java.util.Scanner;
+public class Solution{
+	public static int count(String s, char c)
+	{
+		int res = 0;
+		for (int i=0; i<s.length(); i++)
+		{
+			if (s.charAt(i) == c)
+			res++;
+		} 
+		return res;
+	}
+	public static void main(String args[]) {
+	    Scanner sc = new Scanner(System.in);
+	    System.out.println("Enter a string: ");
+		String str= sc.nextLine();
+		char c = 'a';
+		System.out.println("Number of times 'a' appears: ");
+		System.out.println(count(str, c));
+	}
+}
+
+
+19. Java program to check leap year.
+import java.io.*; 
+import java.util.Scanner; 
+public class Solution { 
+public static void main(String[] args) 	{ 
+		int year; 
+		Scanner scn = new Scanner(System.in);
+		System.out.println("Enter a year: ");
+		year = scn.nextInt(); 
+	    if((year % 4 == 0)) {
+			System.out.println(year + " is a leap year"); 
+		} 
+		else { 
+			System.out.println(year + " is not a leap year"); 
+		} 
+	} 
+}
+
+
+20. Java Program to Find the Largest and Smallest Numbers From an Array of Random Numbers.
+public class Solution {
+ public static void main(String[] args) {
+  int num[] = new int[]{55,32,45,98,82,11,9,39,50};
+  int s = num[0];
+  int l = num[0];
+  for (int i = 1; i < num.length; i++) {
+   if (num[i] > l)
+    l = num[i];
+   else if (num[i] < s)
+    s = num[i];
+  }
+  System.out.println("Largest Number is:\n" + l);
+  System.out.println("Smallest Number is:\n" + s);
+ }
+}
+
+21. Printing only not-repeated digits in the array.
+import java.util.*;
+public class Main {
+	public static void CalcUnique(int[] arr, int N) {
+		Arrays.sort(arr);
+		int temp=Integer.MIN_VALUE;
+		int count=0;
+		for(int i=0;i<N;i++){
+			if(arr[i]==temp){
+				count++;
+			} else {
+				if(count==1){
+					System.out.println(temp);
+					return;
+				}
+				temp=arr[i];
+				count=1;
+			}
+		}
+		System.out.println(arr[N-1]);
+		}
+	public static void main(String[] args) {
+		int[] arr = {1, 1, 2, 3, 3};
+		int N = arr.length;
+		CalcUnique(arr, N);
+	}
+}
+
+
+22. Printing Second largest no. in the array.
+import java.util.Arrays;  
+public class SecondLargest{  
+   public static int getSecondLargest(int[] a, int total){  
+   Arrays.sort(a);  
+   return a[total-2];  
+}  
+public static void main(String args[]){  
+    int a[]={1,2,5,6,3,2};  
+    System.out.println("Second Largest: "+getSecondLargest(a,6));  
+}
+}  
+
+23. Sorting the array without using built in sort methods.
+public class Solution {
+public static void main(String[] args) 
+{
+    int[] arr = new int[] {8,4,20,56,5,11,100};
+    for (int i = 0; i < arr.length; i++) 
+    {  
+        for (int j = i + 1; j < arr.length; j++) 
+        {  
+            int tmp = 0;
+            if (arr[i] > arr[j]) 
+            {         
+                tmp = arr[i];               
+                arr[i] = arr[j];            
+                arr[j] = tmp;
+            }
+        }
+    }
+           for (int i = 0; i < arr.length; i++) 
+           {
+              System.out.println(arr[i]);  
+           }
+}
+}
+
+24. Printing Odd and Even no. from the array.
+public class Solution{  
+	public static void main(String args[]){  
+	int a[]={1,2,5,6,7,5,3,2}; 
+	System.out.println("Odd Numbers:");  
+	for(int i=0; i<a.length; i++){  
+		if(a[i]%2 != 0){  
+		System.out.println(a[i]);}  
+		}  
+		System.out.println("Even Numbers:");  
+	for(int i=0;i<a.length;i++){  
+		if(a[i]%2==0){  
+		System.out.println(a[i]);} 
+		} 
+	}
+	}  
+
+25. Merging two array into one array.
+import java.util.Arrays;  
+public class MergeArray {  
+	public static void main(String[] args)  {
+	int[] arr1 = {55,23,10,47,89,60};        
+	int[] arr2 = {5,2,4,20,77};    
+	int a = arr1.length;        
+	int b = arr2.length;  
+	int[] result = new int[a+b]; 
+	System.arraycopy(arr1, 0, result, 0, a);  
+	System.arraycopy(arr2, 0, result, a, b);  
+	System.out.println(Arrays.toString(result));
+}  
+}
+
+26. Finding Prime Factors of a number.
+import java.util.Scanner;
+public class PrimeFactors {
+   public static void main(String args[]){
+      int number;
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Enter a number ::");
+      number = sc.nextInt();
+      for(int i = 2; i< number; i++) {
+         while(number%i == 0) {
+            System.out.println(i+" ");
+            number = number/i;
+         }
+      }
+      if(number >2) {
+         System.out.println(number);
+      }
+   }
+}
+
+27. Find Prime number within a given range or between two numbers.
+import java.util.Scanner;
+public class Solution{
+	public static void main(String[] args) {
+	Scanner sc = new Scanner(System.in);
+		int a, b, i, j, flag;
+		System.out.printf("Enter lower bound of the interval: ");
+		a = sc.nextInt(); 
+		System.out.printf("\nEnter upper bound of the interval: ");
+		b = sc.nextInt();
+		System.out.printf("\nPrime numbers between %d and %d are: ", a, b);
+		for (i = a; i <= b; i++) {
+			if (i == 1 || i == 0)
+				continue;
+			flag = 1;
+			for (j = 2; j <= i / 2; ++j) {
+				if (i % j == 0) {
+					flag = 0;
+					break;
+				}
+			}
+			if (flag == 1)
+				System.out.println("\n" + i);
+		}
+	}
+}
+
+
+28. Find Strong number.
+import java.util.*;
+import java.util.Scanner;
+public class Main {
+   public static void main(String[] args) {
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Enter a number ");
+      int num = sc.nextInt();
+      int i, factorial,digit, sum = 0;
+      int temp = num;
+      while(temp != 0) {
+         i = 1;
+         factorial = 1;
+         digit = temp % 10;
+         while(i <= digit) {
+            factorial = factorial * i;
+            i++;
+         }
+         sum = sum + factorial;
+         temp = temp / 10;
+      }
+      if(sum == num)
+         System.out.println(num + " is a strong number\n");
+      else
+         System.out.println(num + " is not a strong number\n");
+   }   
+}
+
+29. Find Perfect number.
+import java.util.Scanner;  
+public class Perfectnumber{  
+public static void main(String args[])   {
+    long n, sum=0;  
+    Scanner sc=new Scanner(System.in);         
+    System.out.print("Enter the number: ");  
+    n=sc.nextLong();  
+    int i=1;  
+    while(i <= n/2)  {
+        if(n % i == 0)  {   
+            sum = sum+i;  
+        } 
+        i++;  
+    } 
+    if(sum==n)  {  
+    System.out.println(n+" is a perfect number.");  } 
+    else {  
+    System.out.println(n+" is not a perfect number.");   
+    }  
+    } 
+}
+
+30. Check Armstrong number.
+public class Armstrong {
+    public static void main(String[] args) {
+        int num = 371, originalNumber, remainder, result = 0;
+        originalNumber = num;
+        while (originalNumber != 0)
+        {
+            remainder = originalNumber % 10;
+            result += Math.pow(remainder, 3);
+            originalNumber /= 10;
+        }
+        if(result == num)
+            System.out.println(num + " is an Armstrong number.");
+        else
+            System.out.println(num + " is not an Armstrong number.");
+    }
+}
+
+31. Armstrong number in given range.
+import java.util.Scanner;
+public class Armstrong{
+   public static void main(String args[]){
+      int num1, num2;
+      Scanner sc = new Scanner(System.in);
+      System.out.println("Enter the upper limit:");
+      num1 = sc.nextInt();
+      System.out.println("Enter the lower limit:");
+      num2 = sc.nextInt();
+      for (int i = num1; i<num2; i++){
+         int check, rem, sum = 0;
+         check = i;
+         while(check != 0) {
+            rem = check % 10;
+            sum = sum + (rem * rem * rem);
+            check = check / 10;
+         }
+         if(sum == i){
+            System.out.println(""+i+" is an Armstrong number.");
+         }
+      }
+   }
+}
+
+32. Calculate the number of digits in an integer.
+import java.util.Scanner;
+public class Main {
+  public static void main(String[] args) {
+    int count = 0;
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter a number: ");
+    int num = sc.nextInt();
+    while (num != 0) {
+      num /= 10;
+      ++count;
+    }
+    System.out.println("Number of digits: " + count);
+  }
+} 
+
+33. Find Smallest and largest number from Array.
+public class Solution {
+ public static void main(String[] args) {
+  int num[] = new int[]{1,55,98,82,11,9,39,50};
+  int s = num[0];
+  int l = num[0];
+  for (int i = 1; i < num.length; i++) {
+   if (num[i] > l)
+    l = num[i];
+   else if (num[i] < s)
+    s = num[i];
+  }
+  System.out.println("Largest Number is:\n" + l);
+  System.out.println("Smallest Number is:\n" + s);
+ }
+}
+
+34. Find Number of even and odd elements from Array.
+public class Solution{  
+	public static void main(String args[]){  
+	int a[]={1,2,5,6,7,5,3,2}; 
+	System.out.println("Odd Numbers:");  
+	for(int i=0;i<a.length;i++){  
+		if(a[i]%2!=0){  
+		System.out.println(a[i]);}  
+		}  
+		System.out.println("Even Numbers:");  
+	for(int i=0;i<a.length;i++){  
+		if(a[i]%2==0){  
+		System.out.println(a[i]);} 
+		} 
+	}
+	}  
+
+
+35. Rotation of elements of array-left and right.
+public class Rotation{  
+    public static void main(String[] args) {    
+        int [] arr = new int [] {1, 2, 3, 4, 5};   
+        int n = 3;  
+        System.out.println("Original array: ");  
+        for (int i = 0; i < arr.length; i++) {   
+            System.out.print(arr[i] + " ");   
+        }    
+        for(int i = 0; i < n; i++){  
+            int j, first;  
+            first = arr[0];  
+            for(j = 0; j < arr.length-1; j++){   
+                arr[j] = arr[j+1];  
+            }   
+            arr[j] = first;  
+        }  
+        System.out.println();  
+        System.out.println("Array after left rotation: ");  
+        for(int i = 0; i< arr.length; i++){  
+            System.out.print(arr[i] + " ");  
+        }  
+    }  
+}  
+
+36. Find length of string without using function.
+public class StringLength {
+   public static void main(String args[]) throws Exception {
+      String str = "sampleString";
+      int i = 0;
+      for(char c: str.toCharArray()) {
+         i++;
+      }
+      System.out.println("Length of the given string :"+i);
+   }
+}
+
+37. Remove Spaces from string.
+public class BlankSpace {
+	public static void main(String[] args)
+	{
+		String str = "hello    world	 ";
+		str = str.replaceAll("\\s", "");
+		System.out.println(str);
+	}
+}
+
+38. Check if given string is Palindrome or not.
+import java.io.*;
+import java.util.Scanner;
+public class Solution {
+	public static boolean isPalindrome(String str)
+	{
+		String rev = "";
+		boolean ans = false;
+		for (int i = str.length() - 1; i >= 0; i--) {
+			rev = rev + str.charAt(i);
+		}
+		if (str.equals(rev)) {
+			ans = true;
+		}
+		return ans;
+	}
+	public static void main(String[] args)
+	{
+	    Scanner sc = new Scanner(System.in);
+	    System.out.println("Enter a string to check whether it is palindrome or not");
+		String str = sc.nextLine();
+		str = str.toLowerCase();
+		boolean A = isPalindrome(str);
+		System.out.println(A);
+	}
+}
+
+
+39. Capitalize the first and last character of each word of String.
+public class Solution{
+	static String FirstAndLast(String str)
+	{
+		char[] ch = str.toCharArray();
+		for (int i = 0; i < ch.length; i++) {
+			int k = i;
+			while (i < ch.length && ch[i] != ' ')
+				i++;
+			ch[k] = (char)(ch[k] >= 'a' && ch[k] <= 'z' ? ((int)ch[k] - 32): (int)ch[k]);
+			ch[i - 1] = (char)(ch[i - 1] >= 'a' && ch[i - 1] <= 'z' ? ((int)ch[i - 1] - 32) : (int)ch[i - 1]);
+		}
+		return new String(ch);
+	}
+	public static void main(String args[])
+	{
+		String str = "hello";
+		System.out.println(str);
+		System.out.println(FirstAndLast(str));
+	}
+}
+
+
+40. Find a greatest pair from Array.
+public class Greatestpair{
+	public static void main(String[] args)
+	{
+		int arr[] = { 12, 34, 10, 6, 40};
+		System.out.println(largestPairSum(arr, arr.length));
+	}
+	private static int largestPairSum(int[] arr, int n)
+	{
+		int j = 0;
+		int max = n == 1 ? arr[0] + arr[1] : arr[0];
+		for (int i = 0; i < n; i++) {
+			int sum = arr[j] + arr[i];
+			if (sum > max) {
+				max = sum;
+				if (arr[j] < arr[i]) {
+					j = i;
+				}
+			}
+		}
+		return max;
+	}
+}
+
+41. Write a program in Java to display the pattern like right angle triangle with a number.
+import java.util.Scanner;
+public class Solution{
+public static void main(String[] args) {
+   int i,j,n;
+   System.out.print("Input number of rows : ");
+   Scanner in = new Scanner(System.in);
+		    n = in.nextInt();
+   for(i=1;i<=n;i++)
+   {
+	for(j=1;j<=i;j++)
+	  System.out.print(j);
+    System.out.println("");
+    }
+}
+}
+
+42. Write a Java program to check whether the first two characters present at the end of a given string.
+import java.util.*;
+public class Solution{
+public boolean firstInLast(String str) {
+  if (str.length() < 2)
+    return false;
+  else if (str.substring(0,2).equals(str.substring(str.length()-2, str.length())))
+    return true;
+  else
+    return false;
+}
+public static void main (String[] args){
+	Main m= new Main();
+        String str1 =  "educated";
+        System.out.println("The given strings is: "+str1);
+        System.out.println("The first two characters appear in the last is: "+m.firstInLast(str1));
+	}
+}
+
+43. Write a Java program that keeps a number from the user and generates an integer between 1 and 7 and displays the name of the weekday.
+import java.util.Scanner;
+public class Solution{
+public static void main(String[] args)
+    {
+        Scanner in = new Scanner(System.in);
+        System.out.print("Input number: ");
+        int day = in.nextInt();
+        System.out.println(getDayName(day));
+    }
+    public static String getDayName(int day) {
+        String dayName = "";
+        switch (day) {
+            case 1: dayName = "Monday"; break;
+            case 2: dayName = "Tuesday"; break;
+            case 3: dayName = "Wednesday"; break;
+            case 4: dayName = "Thursday"; break;
+            case 5: dayName = "Friday"; break;
+            case 6: dayName = "Saturday"; break;
+            case 7: dayName = "Sunday"; break;
+            default:dayName = "Invalid day range";
+        }
+        return dayName;
+    }
+}
+
+44. Write a Java program that checks if 2 array contains the same element.
+import java.util.*;
+class Solution{
+public static void main(String[] args) {
+    Object[] a = new Object[] {1, 5, 7, 9};
+    Object[] b = new Object[] {9, 5, 1, 7};
+    Object[] c = new Object[] {1, 6, 7, 5};
+    Arrays.sort(a);
+    Arrays.sort(b);
+    Arrays.sort(c);
+    boolean returnVal1 = Arrays.equals(a,b);
+    System.out.println("Array a and b equal?: " + returnVal1);
+    boolean returnVal2 = Arrays.equals(b,c);
+    System.out.println("Array b and c equal?: " + returnVal2);
+  }
+}
+
+45. How do you shuffle an array in Java.
+import java.util.Arrays;
+import java.util.List;
+import java.util.Random;
+public class Demo {
+   public static void main(String[] args) {
+      String[] letters = { "P", "Q", "R", "S", "T", "U","V", "W", "X", "Y", "Z" };
+      System.out.println("Initial array = "+Arrays.toString(letters));
+      List<String>list = Arrays.asList(letters);
+      int len = list.size();
+      System.out.println("Shuffled array...");
+      for (int i = 0; i < letters.length; i++) {
+         int index = new Random().nextInt(len);
+         String shuffle = list.get(index);
+         System.out.println(shuffle);
+      }
+   }
+}
+
+46. Find the array pairs whose sum is equal to the given number.
+public class Solution{	
+public static void printPairs(int arr[], int n, int sum) {
+	for (int i = 0; i < n; i++)
+		for (int j = i + 1; j < n; j++)
+		    if (arr[i] + arr[j] == sum;
+					System.out.println("(" + arr[i] + ", " + arr[j] + ")");
+}
+public static void main(String[] arg)	{
+	int arr[] = { 1, 5, 7, -1, 5 };
+	int n = arr.length;
+	int sum = 6;
+	printPairs(arr, n, sum);
+	}
+}
+
+47. Write a Java program to divide a string in n equal parts.
+public class DivideString {  
+    public static void main(String[] args) {  
+        String str = "aaaabbbbcccc";  
+        int len = str.length();   
+        int n = 3;  
+        int temp = 0, chars = len/n;  
+        String[] equalStr = new String [n];  
+        if(len % n != 0) {  
+            System.out.println("Sorry this string cannot be divided into "+ n +" equal parts.");  
+        }  
+        else {  
+            for(int i = 0; i < len; i = i+chars) {   
+                String part = str.substring(i, i+chars);  
+                equalStr[temp] = part;  
+                temp++;  
+            }  
+    System.out.println(n + " equal parts of given string are ");  
+            for(int i = 0; i < equalStr.length; i++) {  
+                System.out.println(equalStr[i]);  
+                }  
+            }  
+        }  
+}  
+
+48. Write a Java program to count and print all the duplicates in the input string.
+public class DuplicateCharacters {    
+     public static void main(String[] args) {    
+        String string1 = "Programming";    
+        int count;       
+        char string[] = string1.toCharArray();    
+        System.out.println("Duplicate characters in a given string: ");     
+        for(int i = 0; i <string.length; i++) {    
+            count = 1;    
+            for(int j = i+1; j <string.length; j++) {    
+                if(string[i] == string[j] && string[i] != ' ') {    
+                    count++;    
+                    string[j] = '0';    
+                }    
+            }    
+            if(count > 1 && string[i] != '0')    
+                System.out.println(string[i]);    
+        }    
+    }    
+}     
+
+49. Write a Java program to check whether a given string starts with the contents of another string.
+public class Solution{
+public static void main(String[] args)
+    {
+        String str1 = "Red is favorite color.";
+        String str2 = "Orange is also my favorite color.";
+        String startStr = "Red";
+        boolean starts1 = str1.startsWith(startStr);
+        boolean starts2 = str2.startsWith(startStr);
+        System.out.println( str1 + " starts with " +
+             startStr + "? " + starts1);
+        System.out.println(str2 + " starts with " +
+             startStr + "? " + starts2);
+    }
+}
+
+50. WAP to print Diamond pattern.
+import java.util.*; 
+public class Solution {
+    public static void printDiamond(int n) 
+	{ 
+		int space = n - 1; 
+		for (int i = 0; i < n; i++) 
+		{
+			for (int j = 0; j < space; j++) 
+				System.out.print(" "); 
+			for (int j = 0; j <= i; j++) 
+				System.out.print("* "); 
+			System.out.print("\n"); 
+			space--; 
+		} 
+		space = 0;
+		for (int i = n; i > 0; i--) 
+		{ 
+			for (int j = 0; j < space; j++) 
+				System.out.print(" "); 
+			for (int j = 0; j < i; j++) 
+				System.out.print("* "); 
+			System.out.print("\n"); 
+			space++; 
+		} 
+	} 
+	public static void main(String[] args) 
+	{ 
+		printDiamond(3); 
+		
+	} 
+} 
+
+51. WAP to print Pyramid of Character.
+public class Main {
+
+  public static void main(String[] args) {
+    int rows = 5;
+    for (int i = 1; i <= rows; ++i) {
+      for (int j = 1; j <= i; ++j) {
+        System.out.print("* ");
+      }
+      System.out.println();
+    }
+  }
+}
+
+52. WAP to print Pyramid of Number.
+public class Main {
+
+  public static void main(String[] args) {
+    int rows = 5;
+
+    for (int i = 1; i <= rows; ++i) {
+      for (int j = 1; j <= i; ++j) {
+        System.out.print(j + " ");
+      }
+      System.out.println();
+    }
+  }
+}
+
